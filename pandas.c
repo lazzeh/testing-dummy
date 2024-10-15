@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 // Function prototypes
 int checkArguments(int numOfArguments, char **cmdLineArguments);   // Difficulty: 2
@@ -56,60 +55,3 @@ int printFileNames(int numberOfFiles, char **fileNames) {
     return 1;
 }
 
-// Check if a file exists
-int checkFileExists(char *fileName) {
-    FILE *file = fopen(fileName, "r");
-    if (file) {
-        printf("File Exists: true\n");
-        fclose(file);
-        return 1;
-    } else {
-        printf("File Exists: false\n");
-        return 0;
-    }
-}
-
-// Read the contents of a file and print each character
-int readFile(char *fileName) {
-    FILE *file = fopen(fileName, "r");
-    if (!file) {
-        printf("Could not open file %s\n", fileName);
-        return 0;
-    }
-
-    char ch;
-    printf("Name: ");
-    while ((ch = fgetc(file)) != EOF) {
-        // Print each character, handling newlines appropriately
-        if (ch == '\n') {
-            printf(" ");
-        } else {
-            printf("%c", ch);
-        }
-    }
-    printf("\n");
-    fclose(file);
-    return 1;
-}
-
-// Extract and print lines with 6 or more characters
-int extractSample(char *fileName) {
-    FILE *file = fopen(fileName, "r");
-    if (!file) {
-        printf("Could not open file %s\n", fileName);
-        return 0;
-    }
-
-    char line[100];
-    int sampleCount = 1;
-    while (fgets(line, sizeof(line), file)) {
-        // Check if the line has 6 or more characters
-        if (strlen(line) >= 6) {
-            // Replace newline character with null terminator for printing
-            line[strcspn(line, "\n")] = 0;
-            printf("Sample %d: %s\n", sampleCount++, line);
-        }
-    }
-    fclose(file);
-    return 1;
-}
