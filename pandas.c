@@ -55,3 +55,70 @@ int printFileNames(int numberOfFiles, char **fileNames) {
     return 1;
 }
 
+// Check if a file exists
+int checkFileExists(char *fileName) {
+    FILE *file = fopen(fileName, "r");
+    if (file) {
+        printf("File Exists: true\n");
+        fclose(file);
+        return 1;
+    } else {
+        printf("File Exists: false\n");
+        return 0;
+    }
+}
+
+// Read the contents of a file and print each character
+int readFile(char *fileName) {
+    FILE *file = fopen(fileName, "r");
+    if (!file) {
+        printf("Could not open file %s\n", fileName);
+        return 0;
+    }
+
+    char ch;
+    printf("Name: ");
+    while ((ch = fgetc(file)) != EOF) {
+        // Print each character, handling newlines appropriately
+        if (ch == '\n') {
+            printf(" ");
+        } else {
+            printf("%c", ch);
+        }
+    }
+    printf("\n");
+    fclose(file);
+    return 1;
+}
+
+// Extract and print lines with 6 or more characters
+int extractSample(char *fileName) {
+    FILE *file = fopen(fileName, "r");
+    if (!file) {
+        printf("Could not open file %s\n", fileName);
+        return 0;
+    }
+
+    char line[100];
+    int sampleCount = 1;
+    while (fgets(line, sizeof(line), file)) {
+        // Count the number of characters in the line
+        int charCount = 0;
+        for (int i = 0; line[i] != '\0'; i++) {
+            charCount++;
+            // Stop counting if we hit a newline character
+            if (line[i] == '\n') {
+                break;
+            }
+        }
+
+        // Check if the line has 6 or more characters
+        if (charCount >= 6) {
+            // Manually replace the newline character with a null terminator for printing
+            line[charCount - 1] = '\0';  // This replaces the newline with null terminator
+            printf("Sample %d: %s\n", sampleCount++, line);
+        }
+    }
+    fclose(file);
+    return 1;
+}
