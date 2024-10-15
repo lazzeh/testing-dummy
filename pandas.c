@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Function prototypes
 int checkArguments(int numOfArguments, char **cmdLineArguments);   // Difficulty: 2
 int printFileNames(int numberOfFiles, char **fileNames);           // Difficulty: 1
 int checkFileExists(char *fileName);                               // Difficulty: 2
 int readFile(char *fileName);                                      // Difficulty: 3
 int extractSample(char *fileName);                                 // Difficulty: 4
 
-// Main function
+//Two arguements one for checking the given aguments and one checking if the file exists
 int main(int argc, char **argv) {
     // Check if the correct number of arguments is passed
     if (checkArguments(argc, argv) != 1) {
@@ -40,11 +39,12 @@ int main(int argc, char **argv) {
 int checkArguments(int numOfArguments, char **cmdLineArguments) {
     if (numOfArguments >= 2) {
         printf("Arguments: true\n");
-        return 1;
+        
     } else {
         printf("Arguments: false\n");
         return 0;
     }
+    return 2;
 }
 
 // Print the file names passed as arguments
@@ -61,11 +61,12 @@ int checkFileExists(char *fileName) {
     if (file) {
         printf("File Exists: true\n");
         fclose(file);
-        return 1;
+        
     } else {
         printf("File Exists: false\n");
         return 0;
     }
+    return 2;
 }
 
 // Read the contents of a file and print each character
@@ -88,7 +89,7 @@ int readFile(char *fileName) {
     }
     printf("\n");
     fclose(file);
-    return 1;
+    return 3;
 }
 
 // Extract and print lines with 6 or more characters
@@ -112,13 +113,17 @@ int extractSample(char *fileName) {
             }
         }
 
-        // Check if the line has 6 or more characters
-        if (charCount >= 6) {
-            // Manually replace the newline character with a null terminator for printing
-            line[charCount - 1] = '\0';  // This replaces the newline with null terminator
-            printf("Sample %d: %s\n", sampleCount++, line);
+         if (charCount >= 6) {
+            // Print the line without the newline
+            for (int i = 0; i < charCount; i++) {
+                if (line[i] != '\n') {
+                    printf("%c", line[i]);
+                }
+            }
+            printf("\n");  // Print a newline after the output
+            printf("Sample %d: ", sampleCount++);
         }
     }
     fclose(file);
-    return 1;
+    return 4;
 }
