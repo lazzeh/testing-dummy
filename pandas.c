@@ -1,42 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int checkArguments(int numOfArguments, char **cmdLineArguments);   // Difficulty: 2
-int printFileNames(int numberOfFiles, char **fileNames);           // Difficulty: 1
-int checkFileExists(char *fileName);                               // Difficulty: 2
-int readFile(char *fileName);                                      // Difficulty: 3
-int extractSample(char *fileName);                                 // Difficulty: 4
+int checkArguments(int numOfArguments, char **cmdLineArguments);   
+int printFileNames(int numberOfFiles, char **fileNames);           
+int checkFileExists(char *fileName);                               
+int readFile(char *fileName);                                     
+int extractSample(char *fileName);                                
 
 //Two arguements one for checking the given aguments and one checking if the file exists
-int main(int argc, char **argv) {
-    // Check if the correct number of arguments is passed
+int main(int argc, char **argv) 
+{
     if (checkArguments(argc, argv) != 1) {
         printf("Invalid number of arguments.\n");
         return 1;
     }
 
-    // Check if the first file exists
+//Seeing if the file exists using this code
     if (checkFileExists(argv[1]) != 1) {
         printf("File %s does not exist.\n", argv[1]);
         return 1;
     }
 
-    // Print the file names
     printFileNames(argc - 1, &argv[1]);
 
-    // Read the first file's contents
     readFile(argv[1]);
 
-    // Extract a sample from the second file, if present
+//Grab a sample from the second file
     if (argc >= 3) {
         extractSample(argv[2]);
     }
-
     return 0;
 }
 
-// Check if the number of arguments is correct
-int checkArguments(int numOfArguments, char **cmdLineArguments) {
+//Check if the number of arguments is true or false/ correct
+int checkArguments(int numOfArguments, char **cmdLineArguments)
+ {
     if (numOfArguments >= 2) {
         printf("Arguments: true\n");
         
@@ -47,16 +45,18 @@ int checkArguments(int numOfArguments, char **cmdLineArguments) {
     return 2;
 }
 
-// Print the file names passed as arguments
-int printFileNames(int numberOfFiles, char **fileNames) {
+//Print the file names as arugments using our given integers and info
+int printFileNames(int numberOfFiles, char **fileNames) 
+{
     for (int i = 0; i < numberOfFiles; i++) {
         printf("File Name: %s\n", fileNames[i]);
     }
     return 1;
 }
 
-// Check if a file exists
-int checkFileExists(char *fileName) {
+//Check the file to see if it exists 
+int checkFileExists(char *fileName) 
+{
     FILE *file = fopen(fileName, "r");
     if (file) {
         printf("File Exists: true\n");
@@ -69,8 +69,9 @@ int checkFileExists(char *fileName) {
     return 2;
 }
 
-// Read the contents of a file and print each character
-int readFile(char *fileName) {
+//Read the given info in the file and print the info by charecter trying to focus on the newlines with the guidelines in the assignment
+int readFile(char *fileName) 
+{
     FILE *file = fopen(fileName, "r");
     if (!file) {
         printf("Could not open file %s\n", fileName);
@@ -79,8 +80,8 @@ int readFile(char *fileName) {
 
     char ch;
     printf("Name: ");
-    while ((ch = fgetc(file)) != EOF) {
-        // Print each character, handling newlines appropriately
+    while ((ch = fgetc(file)) != EOF)
+     {
         if (ch == '\n') {
             printf(" ");
         } else {
@@ -92,8 +93,9 @@ int readFile(char *fileName) {
     return 3;
 }
 
-// Extract and print lines with 6 or more characters
-int extractSample(char *fileName) {
+//Grab lines or words from the files with 6 or more charecters, using a for loop and and stopping the counting once hitting a newline. 
+int extractSample(char *fileName) 
+{
     FILE *file = fopen(fileName, "r");
     if (!file) {
         printf("Could not open file %s\n", fileName);
@@ -103,18 +105,19 @@ int extractSample(char *fileName) {
     char line[100];
     int sampleCount = 1;
     while (fgets(line, sizeof(line), file)) {
-        // Count the number of characters in the line
+        
         int charCount = 0;
-        for (int i = 0; line[i] != '\0'; i++) {
+        for (int i = 0; line[i] != '\0'; i++) 
+        {
             charCount++;
-            // Stop counting if we hit a newline character
+        
             if (line[i] == '\n') {
                 break;
             }
         }
 
-         if (charCount >= 6) {
-            // Print the line without the newline
+         if (charCount >= 6) 
+         {
             for (int i = 0; i < charCount; i++) {
                 if (line[i] != '\n') {
                     printf("%c", line[i]);
@@ -125,5 +128,5 @@ int extractSample(char *fileName) {
         }
     }
     fclose(file);
-    return 4;
+    return 5;
 }
