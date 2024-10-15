@@ -106,29 +106,26 @@ int extractSample(char *fileName)
 
     char line[100];
     int sampleCount = 1;
-    while (fgets(line, sizeof(line), file)) {
-        
+    while (fgets(line, sizeof(line), file)) 
+    {
         int charCount = 0;
         for (int i = 0; line[i] != '\0'; i++) 
         {
-            charCount++;
-        
-            if (line[i] == '\n') {
-                break;
+            if (line[i] != '\n') {
+                charCount++;
             }
         }
 
-         if (charCount >= 6) 
-         {
-            for (int i = 0; i < charCount; i++) {
-                if (line[i] != '\n') {
-                    printf("%c", line[i]);
-                }
+        // Print lines with 6 or more characters
+        if (charCount >= 6) 
+        {
+            printf("Sample %d: ", sampleCount++);  // Print sample number and increment
+            for (int i = 0; line[i] != '\n' && line[i] != '\0'; i++) {
+                printf("%c", line[i]);  // Print the line character by character
             }
-            printf("\n");  // Print a newline after the output
-            printf("Sample %d: ", sampleCount++);
+            printf("\n");
         }
     }
     fclose(file);
-    return 5;
+    return 1;
 }
