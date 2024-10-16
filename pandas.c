@@ -9,7 +9,7 @@ int checkFileExists(char *fileName);
 int readFile(char *fileName);                                     
 int extractSample(char *fileName);                                
 
-// Two arguments: one for checking the given arguments and one for checking if the file exists
+//Two arguements one for checking the given aguments and one checking if the file exists
 int main(int argc, char **argv) 
 {
     if (checkArguments(argc, argv) != 1) {
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    // Checking if the file exists
+//Seeing if the file exists using this code
     if (checkFileExists(argv[1]) != 1) {
         printf("File %s does not exist.\n", argv[1]);
         return 1;
@@ -27,14 +27,14 @@ int main(int argc, char **argv)
 
     readFile(argv[1]);
 
-    // Grab a sample from the second file
+//Grab a sample from the second file
     if (argc >= 3) {
         extractSample(argv[2]);
     }
     return 0;
 }
 
-// Check if the number of arguments is correct
+//Check if the number of arguments is true or false/ correct
 int checkArguments(int numOfArguments, char **cmdLineArguments) 
 {
     if (numOfArguments >= 2) {
@@ -46,7 +46,7 @@ int checkArguments(int numOfArguments, char **cmdLineArguments)
     return 1;  
 }
 
-// Print the file names as arguments
+//Print the file names as arugments using our given integers and info
 int printFileNames(int numberOfFiles, char **fileNames) 
 {
     for (int i = 0; i < numberOfFiles; i++) {
@@ -55,7 +55,7 @@ int printFileNames(int numberOfFiles, char **fileNames)
     return 1;  // Difficulty rating for printFileNames
 }
 
-// Check if the file exists
+//Check if the file exists
 int checkFileExists(char *fileName) 
 {
     FILE *file = fopen(fileName, "r");
@@ -70,7 +70,7 @@ int checkFileExists(char *fileName)
     return 1;  // Difficulty rating for checkFileExists
 }
 
-// Read and print the contents of the file
+//Read the given info in the file and print the info by charecter trying to focus on the newlines with the guidelines in the assignment
 int readFile(char *fileName) 
 {
     FILE *file = fopen(fileName, "r");
@@ -93,7 +93,7 @@ int readFile(char *fileName)
     return 3;  // Difficulty rating for readFile
 }
 
-// Extract words of 6 or more characters, skipping samples when necessary
+//Grab lines or words from the files with 6 or more charecters, using a for loop and and stopping the counting once hitting a newline. 
 int extractSample(char *fileName) 
 {
     FILE *file = fopen(fileName, "r");
@@ -102,30 +102,27 @@ int extractSample(char *fileName)
         return 0;  // Difficulty rating
     }
 
-    char word[100];  // Buffer to hold each word
-    int sampleCount = 1;  // Total sample counter
+    char word[100];  
+    int sampleCount = 1;  
 
-    // Reading the file word by word
+//Reading the file word by word
     while (fscanf(file, "%s", word) != EOF) 
     {
         int charCount = 0;
 
-        // Counting characters in the word
         for (int i = 0; word[i] != '\0'; i++) 
         {
             charCount++;
         }
 
-        // Only print words with 6 or more characters
         if (charCount >= 6) 
         {
             printf("Sample %d: %s\n", sampleCount, word);
         }
 
-        // Increment the sample count for every word, regardless of length
         sampleCount++;
     }
 
     fclose(file);
-    return 5;  // Difficulty rating for extractSample
+    return 5;  
 }
