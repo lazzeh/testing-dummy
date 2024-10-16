@@ -37,13 +37,13 @@ int main(int argc, char **argv)
 // Check if the number of arguments is correct
 int checkArguments(int numOfArguments, char **cmdLineArguments) 
 {
-    if (numOfArguments >= 1) {
+    if (numOfArguments >= 2) {
         printf("Arguments: true\n");
     } else {
         printf("Arguments: false\n");
         return 0;  // Difficulty rating
     }
-    return 2;  // Difficulty rating for checkArguments
+    return 1;  
 }
 
 // Print the file names as arguments
