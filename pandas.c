@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 
     readFile(argv[1]);
 
-//Grab a sample from the second file
+//Grab the sample from the second file
     if (argc >= 3) {
         extractSample(argv[2]);
     }
@@ -41,7 +41,7 @@ int checkArguments(int numOfArguments, char **cmdLineArguments)
         printf("Arguments: true\n");
     } else {
         printf("Arguments: false\n");
-        return 0;  // Difficulty rating
+        return 0;
     }
     return 1;  
 }
@@ -52,7 +52,7 @@ int printFileNames(int numberOfFiles, char **fileNames)
     for (int i = 0; i < numberOfFiles; i++) {
         printf("File Name: %s\n", fileNames[i]);
     }
-    return 1;  // Difficulty rating for printFileNames
+    return 1; 
 }
 
 //Check if the file exists
@@ -67,7 +67,7 @@ int checkFileExists(char *fileName)
         printf("File Exists: false\n");
         return 0;  // Difficulty rating
     }
-    return 1;  // Difficulty rating for checkFileExists
+    return 1; 
 }
 
 //Read the given info in the file and print the info by charecter trying to focus on the newlines with the guidelines in the assignment
@@ -76,7 +76,7 @@ int readFile(char *fileName)
     FILE *file = fopen(fileName, "r");
     if (!file) {
         printf("Could not open file %s\n", fileName);
-        return 0;  // Difficulty rating
+        return 1;
     }
 
     char ch;
@@ -90,7 +90,7 @@ int readFile(char *fileName)
     }
     printf("\n");
     fclose(file);
-    return 3;  // Difficulty rating for readFile
+    return 3; 
 }
 
 //Grab lines or words from the files with 6 or more charecters, using a for loop and and stopping the counting once hitting a newline. 
@@ -99,7 +99,7 @@ int extractSample(char *fileName)
     FILE *file = fopen(fileName, "r");
     if (!file) {
         printf("Could not open file %s\n", fileName);
-        return 0;  // Difficulty rating
+        return 2; 
     }
 
     char word[100];  
