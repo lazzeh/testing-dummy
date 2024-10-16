@@ -62,11 +62,12 @@ int checkFileExists(char *fileName)
     if (file) {
         printf("File Exists: true\n");
         fclose(file);
+        return 1;
     } else {
         printf("File Exists: false\n");
         return 0;  // Difficulty rating
     }
-    return 2;  // Difficulty rating for checkFileExists
+    return 1;  // Difficulty rating for checkFileExists
 }
 
 // Read and print the contents of the file
