@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 // Check if the number of arguments is correct
 int checkArguments(int numOfArguments, char **cmdLineArguments) 
 {
-    if (numOfArguments >= 2) {
+    if (numOfArguments >= 1) {
         printf("Arguments: true\n");
     } else {
         printf("Arguments: false\n");
