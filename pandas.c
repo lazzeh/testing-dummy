@@ -104,31 +104,30 @@ int extractSample(char *fileName)
         return 0;
     }
 
-    char line[100];
-    int sampleCount = 1;
-    while (fgets(line, sizeof(line), file)) {
-        
+    char word[100];  // Buffer to hold each word
+    int sampleCount = 1;  // Total sample counter
+
+    // Reading the file word by word
+    while (fscanf(file, "%s", word) != EOF) 
+    {
         int charCount = 0;
-        for (int i = 0; line[i] != '\0'; i++) 
+
+        // Counting characters in the word
+        for (int i = 0; word[i] != '\0'; i++) 
         {
             charCount++;
-        
-            if (line[i] == '\n') {
-                break;
-            }
         }
 
-         if (charCount >= 6) 
-         {
-            for (int i = 0; i < charCount; i++) {
-                if (line[i] != '\n') {
-                    printf("%c", line[i]);
-                }
-            }
-            printf("\n");  // Print a newline after the output
-            printf("Sample %d: ", sampleCount++);
+        // Only print words with 6 or more characters
+        if (charCount >= 6) 
+        {
+            printf("Sample %d: %s\n", sampleCount, word);
         }
+
+        // Increment the sample count for every word, regardless of length
+        sampleCount++;
     }
+
     fclose(file);
-    return 5;
+    return 1;
 }
