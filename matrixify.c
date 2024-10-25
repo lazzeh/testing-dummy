@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int readFile(char *fileName);
+int* createOneDimensionalArray(int size);
+int** createMatrix(int rows, int cols);
+int** addMatrices(int **defaultMatrix, int **readInMatrix, int rows, int cols);
+int computeDiagonalSum(int **matrix, int rows, int cols);
+int collectBytes(int **matrix, int rows, int cols);
+
 // 4.2 Main Function
 int main(int argc, char **argv) {
     if (argc != 2) {
