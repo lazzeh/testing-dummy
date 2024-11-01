@@ -1,13 +1,17 @@
+//Li767225
+//Liborio Collazo
 #include <stdio.h>
 #include <string.h>
 
-// Function to find string length
-int string_length(char *str) {
+
+//Equation to find the string length
+int string_length(char *str) 
+{
     return strlen(str);
 }
-
-// Function to compare strings alphabetically
-void compare_strings(char *str1, char *str2) {
+//Comparing the function aphabetically and printing a response due to the assignemtn
+void compare_strings(char *str1, char *str2) 
+{
     int cmp = strcmp(str1, str2);
     if (cmp < 0) {
         printf("%s comes before %s alphabetically\n", str1, str2);
@@ -18,16 +22,18 @@ void compare_strings(char *str1, char *str2) {
     }
 }
 
-// Function to concatenate strings
-void concatenate_strings(char *str1, char *str2) {
-    char result[100];  // Ensure this is large enough to hold both strings
+//Combining or concentrating the strings
+void concatenate_strings(char *str1, char *str2) 
+{
+    char result[100]; 
     strcpy(result, str1);
     strcat(result, str2);
     printf("Concatenated string: %s\n", result);
 }
 
-// Function to reverse a string
-void string_reverse(char *str) {
+//Reversing the string given
+void string_reverse(char *str) 
+{
     int length = strlen(str);
     char reversed[length + 1];
     for (int i = 0; i < length; i++) {
@@ -36,8 +42,9 @@ void string_reverse(char *str) {
     reversed[length] = '\0';
     printf("Reversed string: %s\n", reversed);
 }
-
-int main() {
+//Putting everything together to get the desired output
+int main() 
+{
     char str1[50], str2[50];
     
     printf("Enter the first string: ");
@@ -45,17 +52,13 @@ int main() {
     printf("Enter the second string: ");
     scanf("%49s", str2);
 
-    // Length of strings
     printf("Length of first string: %d\n", string_length(str1));
     printf("Length of second string: %d\n", string_length(str2));
-
-    // Compare strings
+    
     compare_strings(str1, str2);
 
-    // Concatenate strings
     concatenate_strings(str1, str2);
 
-    // Reverse strings
     printf("Reversed first string: ");
     string_reverse(str1);
     printf("Reversed second string: ");
